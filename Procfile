@@ -1,0 +1,1 @@
+web: gunicorn pic_hub.wsgi
