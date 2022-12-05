@@ -55,9 +55,28 @@ class Post(models.Model):
 
 class Likes(models.Model):
     # Likes model to be created here
+    def like_post():
+        # like post code
+        print('Test')
+
+    def unlike_post():
+        # unlike post code
+        print('Test')
+
 
 class Follow(models.Model):
     # Follow model to be created here
+    def follow_account():
+        # like post code
+        print('Test')
+
+    def unfollow_account():
+        # unlike post code
+        print('Test')
+
 
 class Feed(models.Model):
     # Feed model to be created here
+    def add_post():
+        # like post code
+        print('Test')
