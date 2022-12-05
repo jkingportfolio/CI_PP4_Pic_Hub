@@ -51,3 +51,13 @@ class Post(models.Model):
 
     def number_of_likes(self):
         return self.likes.count()
+
+
+class Likes(models.Model):
+    # Likes model to be created here
+
+class Follow(models.Model):
+    # Follow model to be created here
+
+class Feed(models.Model):
+    # Feed model to be created here
