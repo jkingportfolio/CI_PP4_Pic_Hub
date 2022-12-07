@@ -65,7 +65,9 @@ class Likes(models.Model):
 
 
 class Follow(models.Model):
-    # Follow model to be created here
+    follower = models.ForeignKey(User, on_delete=models.CASCADE, related_name='follower')
+    following = models.ForeignKey(User, on_delete=models.CASCADE, related_name='following')
+
     def follow_account():
         # like post code
         print('Test')
@@ -76,7 +78,11 @@ class Follow(models.Model):
 
 
 class Feed(models.Model):
-    # Feed model to be created here
+    following_accounts = models.ForeignKey(User, on_delete=models.CASCADE, null=True, related_name='feed_followed_accounts')
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    post = models.ForeignKey(Post, on_delete=models.CASCADE, null=True)
+    date = models.DateTimeField()
+    
     def add_post():
         # like post code
         print('Test')
