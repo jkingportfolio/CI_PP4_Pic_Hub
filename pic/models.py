@@ -80,10 +80,18 @@ class Follow(models.Model):
 
 class Feed(models.Model):
     following_accounts = models.ForeignKey(User, on_delete=models.CASCADE, null=True, related_name='feed_followed_accounts')
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='following_account_user')
     post = models.ForeignKey(Post, on_delete=models.CASCADE, null=True)
     date = models.DateTimeField(default=datetime.now, blank=True)
 
     def add_post():
         # like post code
-        print('Test')
+        post = instance
+        user = post.user
+        followers = Follow.objects.all().filter(following=user)
+        for follower in followers:
+            feed = Feed(post=post, user=follower.follower, date=post.posted, following=user)
+            feed.save()
+
+
+post_save.connect(Feed.add_post, sender=Post)
