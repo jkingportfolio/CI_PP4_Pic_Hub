@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
+from django.db.models.base import Model
 from django.utils.text import slugify
 from django.db.models.signals import post_save, post_delete
 import uuid
@@ -36,7 +37,7 @@ class Tag(models.Model):
 
 
 class Post(models.Model):
-    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
+    # id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     picture = CloudinaryField('image', default='placeholder')
     caption = models.CharField(max_length=10000, verbose_name="Caption")
     posted = models.DateTimeField(auto_now_add=True)
@@ -66,8 +67,9 @@ class Likes(models.Model):
 
 
 class Follow(models.Model):
-    follower = models.ForeignKey(User, on_delete=models.CASCADE, related_name='follower')
-    following = models.ForeignKey(User, on_delete=models.CASCADE, related_name='following')
+    # Delete defaults after DB migration
+    follower = models.ForeignKey(User, on_delete=models.CASCADE, related_name='follower', default='placeholder')
+    following = models.ForeignKey(User, on_delete=models.CASCADE, related_name='following', default='placeholder')
 
     def follow_account():
         # like post code
@@ -79,8 +81,9 @@ class Follow(models.Model):
 
 
 class Feed(models.Model):
+    # Delete defaults after DB migration
     following_accounts = models.ForeignKey(User, on_delete=models.CASCADE, null=True, related_name='feed_followed_accounts')
-    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='following_account_user')
+    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='following_account_user', default='placeholder')
     post = models.ForeignKey(Post, on_delete=models.CASCADE, null=True)
     date = models.DateTimeField(default=datetime.now, blank=True)
 
