@@ -27,9 +27,6 @@ class Tag(models.Model):
     def get_absolute_url(self):
         return reverse('tags', args=[self.slug])
 
-    def __str__(self):
-        return self.title
-
     def save(self, *args, **kwargs):
         if not self.slug:
             self.slug = slugify(self.title)
@@ -47,9 +44,6 @@ class Post(models.Model):
 
     def get_absolute_url(self):
         return reverse("post-details", args=[str(self.id)])
-
-    def __str__(self):
-        return self.title
 
     def number_of_likes(self):
         return self.likes.count()
