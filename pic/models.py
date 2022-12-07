@@ -37,7 +37,7 @@ class Tag(models.Model):
 
 
 class Post(models.Model):
-    # id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
+    id = models.UUIDField(primary_key=True, unique=True, default=uuid.uuid4, editable=False)
     picture = CloudinaryField('image', default='placeholder')
     caption = models.CharField(max_length=10000, verbose_name="Caption")
     posted = models.DateTimeField(auto_now_add=True)
