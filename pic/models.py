@@ -84,7 +84,7 @@ class Feed(models.Model):
     post = models.ForeignKey(Post, on_delete=models.CASCADE, null=True)
     date = models.DateTimeField(default=datetime.now, blank=True)
 
-    def add_post():
+    def add_post(sender, instance, *args, **kwargs):
         # like post code
         post = instance
         user = post.user
