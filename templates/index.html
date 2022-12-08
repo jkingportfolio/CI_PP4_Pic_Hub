@@ -1,12 +1,17 @@
 {% extends "base.html" %}
 
 {% block content %}
+
 <div class="container">
-    <img>
-    <p>Image</p>
-    <p>User:</p>
-    <p>Like count</p>
-    <p>Caption</p>
-    <p>Comment</p>
+    {% for pic in render_posts %}
+    <article>
+        <span>{{ pic.user.username }}</span>
+        <span>{{ pic.picture }}</span>
+        <span>{{ pic.likes }}</span>
+        <span>{{ pic.caption }}</span>
+        <span>{{ pic.tags }}</span>
+    </article>
+    {% endfor %}
 </div>
-{%endblock%}
+
+{% endblock content %}
