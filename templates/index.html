@@ -4,7 +4,7 @@
 
 <div class="container">
     {% for pic in render_posts %}
-    <article>
+    <article class="post-container">
         <span>{{ pic.user.username }}</span>
         <img src="{{ pic.picture.url }}">
         <span>{{ pic.likes }}</span>

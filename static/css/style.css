@@ -1,1 +1,8 @@
 /* Site Styles */
+.post-container > * {
+    display: block;
+}
+
+.container {
+    border: 1px solid black;
+}
