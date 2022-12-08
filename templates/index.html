@@ -6,7 +6,7 @@
     {% for pic in render_posts %}
     <article>
         <span>{{ pic.user.username }}</span>
-        <span>{{ pic.picture }}</span>
+        <img src="{{ pic.picture.url }}">
         <span>{{ pic.likes }}</span>
         <span>{{ pic.caption }}</span>
         <span>{{ pic.tags }}</span>
