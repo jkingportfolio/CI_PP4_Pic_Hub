@@ -9,13 +9,6 @@ from datetime import datetime
 
 # Create your models here.
 
-# uploading user files to a specific directory
-
-
-def user_directory_path(instance, filename):
-    return 'user_{0}/{1}'.format(instance.user.id, filename)
-
-
 class Tag(models.Model):
     title = models.CharField(max_length=50, verbose_name='Tag')
     slug = models.SlugField(null=False, unique=True, default=uuid.uuid1)
@@ -65,16 +58,16 @@ class Likes(models.Model):
 
 class Follow(models.Model):
     # Delete defaults after DB migration
-    follower = models.ForeignKey(User, on_delete=models.CASCADE, related_name='follower', default='placeholder')
-    following = models.ForeignKey(User, on_delete=models.CASCADE, related_name='following', default='placeholder')
+    follower = models.ForeignKey(User, on_delete=models.CASCADE, related_name='follower')
+    following = models.ForeignKey(User, on_delete=models.CASCADE, related_name='following')
 
-    def follow_account():
-        # like post code
-        print('Test')
+    # def follow_account():
+    #     # like post code
+    #     print('Test')
 
-    def unfollow_account():
-        # unlike post code
-        print('Test')
+    # def unfollow_account():
+    #     # unlike post code
+    #     print('Test')
 
 
 class Feed(models.Model):
